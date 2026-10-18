@@ -1,0 +1,8 @@
+// Pure helpers shared by the account UI and synchronization tests.
+(function(root){
+ function clean(raw,ids){const allowed=new Set(ids);return {done:[...new Set(Array.isArray(raw?.done)?raw.done.filter(x=>allowed.has(x)):[])],answers:Object.fromEntries(Object.entries(raw?.answers||{}).filter(([k,v])=>allowed.has(k)&&Number.isInteger(v)&&v>=0&&v<=2)),last:allowed.has(raw?.last)?raw.last:null};}
+ function diff(before,after){const out={};for(const id of new Set([...before.done,...after.done,...Object.keys(before.answers),...Object.keys(after.answers)])){const patch={};if(before.done.includes(id)!==after.done.includes(id))patch.done=after.done.includes(id);if(before.answers[id]!==after.answers[id])patch.answer=after.answers[id]??null;if(Object.keys(patch).length)out[id]=patch;}if(before.last!==after.last)out.__meta={last:after.last};return out;}
+ function apply(base,patches,ids){const value=clean(base,ids);for(const [id,p] of Object.entries(patches)){if(id==='__meta'){value.last=p.last;continue;}if(Object.hasOwn(p,'done'))value.done=p.done?[...new Set([...value.done,id])]:value.done.filter(x=>x!==id);if(Object.hasOwn(p,'answer')){if(p.answer===null)delete value.answers[id];else value.answers[id]=p.answer;}}return clean(value,ids);}
+ function importGuest(cloud,guest,ids){const a=clean(cloud,ids),b=clean(guest,ids);return {done:[...new Set([...a.done,...b.done])],answers:{...b.answers,...a.answers},last:a.last||b.last};}
+ const api={clean,diff,apply,importGuest};root.AtlasProgressModel=api;if(typeof module!=='undefined')module.exports=api;
+})(typeof window==='undefined'?globalThis:window);

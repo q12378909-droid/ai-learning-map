@@ -10,7 +10,7 @@ const chapterUnits=id=>units.filter(u=>u.id.startsWith(id));
 const selectedChapters=()=>lessons.filter(l=>route==='all'||l.s===21||String(l.s)===route);
 const selectedUnits=()=>selectedChapters().flatMap(l=>chapterUnits(l.id));
 const isDone=id=>state.done.includes(id);
-function persist(){try{localStorage.setItem(stateKey,JSON.stringify(state));}catch{$('.progress-box small').textContent='儲存不可用；進度暫存於本頁';}}
+function persist(){if(window.AtlasAccount){window.AtlasAccount.save(state);return;}try{localStorage.setItem(stateKey,JSON.stringify(state));}catch{$('.progress-box small').textContent='儲存不可用；進度暫存於本頁';}}
 function matches(u,q){return !q||[u.id,u.title,u.goal,...u.keywords,...u.sections.map(s=>s.title+' '+s.body),u.example.body].join(' ').toLowerCase().includes(q);}
 function needsReview(u){return state.answers[u.id]!==undefined&&state.answers[u.id]!==u.quiz.answer;}
 function render(){
@@ -72,3 +72,6 @@ function outlier(){const n=Number($('#outlier').value);$('#outlierValue').textCo
 let weight=0,steps=0;function updateGradient(){const loss=(weight-3)**2;$('#weightValue').textContent=weight.toFixed(2);$('#lossValue').textContent=loss.toFixed(2);$('#gradientStatus').textContent=`第 ${steps} 步。${loss<1e-8?'已到本例的最低點。':steps>=12?'已完成 12 步，請重設後嘗試另一個學習率。':'留意損失是否穩定下降。'}`;$('#gradientStep').disabled=steps>=12;}$('#gradientStep').onclick=()=>{weight-=Number($('#learningRate').value)*2*(weight-3);steps++;updateGradient();};function resetGradient(){weight=0;steps=0;updateGradient();}$('#gradientReset').onclick=resetGradient;$('#learningRate').onchange=resetGradient;document.querySelectorAll('[data-lab-unit]').forEach(b=>b.onclick=()=>openUnit(b.dataset.labUnit));
 const refs=new Map();units.forEach(u=>u.refs.forEach(r=>{if(!refs.has(r.url))refs.set(r.url,r);}));$('#externalRefs').innerHTML=[...refs.values()].map(r=>`<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)} <span>↗</span></a>`).join('');$('#referenceCount').textContent=refs.size;
 render();
+
+// Account layer replaces displayed state without creating new learning events.
+window.AtlasStudy={ids:units.map(u=>u.id),get:()=>JSON.parse(JSON.stringify(state)),replace:next=>{state=window.AtlasProgressModel.clean(next,units.map(u=>u.id));render();if(currentUnit&&document.querySelector('#lesson').open&&document.querySelector('[data-answer]')){paintFeedback(unitMap.get(currentUnit));const b=document.querySelector('#complete');if(b)b.textContent=isDone(currentUnit)?'已完成 ✓ · 取消標記':'標記本單元已完成 ✓';}}};
