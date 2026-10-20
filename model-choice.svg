@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="600" viewBox="0 0 720 600" role="img" aria-labelledby="title desc">
+<title id="title">先過硬限制，再比較增益</title><desc id="desc">原創模型選型示例：端到端 p95 延遲上限100毫秒。A為40、B為180、C為90，因此B目前不符合；A與C仍需比較品質、成本與穩定性，不能只用速度決定。</desc>
+<rect width="720" height="600" rx="20" fill="#eff4e9"/>
+<g font-family="sans-serif" fill="#254432">
+<text x="32" y="49" font-size="27" font-weight="bold">模型選擇：先過關，再比較</text>
+<text x="32" y="83" font-size="18">同一任務、相同驗證切分、目標環境下量測</text>
+<rect x="32" y="106" width="656" height="64" rx="12" fill="#254432"/>
+<text x="360" y="145" text-anchor="middle" fill="white" font-size="22">本例硬限制：端到端 p95 ≤ 100 ms</text>
+<g text-anchor="middle">
+<rect x="32" y="197" width="204" height="166" rx="12" fill="white" stroke="#bdd0b2"/>
+<rect x="258" y="197" width="204" height="166" rx="12" fill="#fff1e7" stroke="#d5a78e"/>
+<rect x="484" y="197" width="204" height="166" rx="12" fill="white" stroke="#bdd0b2"/>
+<text x="134" y="232" font-size="23" font-weight="bold">模型 A</text><text x="360" y="232" font-size="23" font-weight="bold">模型 B</text><text x="586" y="232" font-size="23" font-weight="bold">模型 C</text>
+<text x="134" y="283" font-size="32">40 ms</text><text x="360" y="283" font-size="32">180 ms</text><text x="586" y="283" font-size="32">90 ms</text>
+<text x="134" y="329" font-size="20">符合本例延遲要求</text><text x="360" y="329" font-size="20" fill="#98492e">目前不符合</text><text x="586" y="329" font-size="20">符合本例延遲要求</text>
+</g>
+<rect x="32" y="389" width="656" height="129" rx="12" fill="#dce8d3"/>
+<text x="52" y="423" font-size="22" font-weight="bold">A 或 C？還不能只靠這張表決定。</text>
+<text x="52" y="458" font-size="20">接著比較：名單品質、成本、穩定性、負載餘裕。</text>
+<text x="52" y="490" font-size="18">B 若要入選，需先改善並重新量測，或正式調整需求。</text>
+<text x="32" y="552" font-size="17">p95 不是最大延遲；也不能拿平均延遲代替它。</text>
+<text x="32" y="580" font-size="16">原創合成案例，非實測結果或官方考題；100 ms 不是通用門檻。</text>
+</g></svg>
