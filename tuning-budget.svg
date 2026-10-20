@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="960" viewBox="0 0 800 960" role="img" aria-labelledby="title desc">
+<title id="title">四小時搜尋預算</title><desc id="desc">24組候選乘5折等於120次擬合，每次2分鐘需240分鐘，額外工作另計。</desc>
+<rect width="800" height="960" rx="28" fill="#f1f5f9"/>
+<g font-family="Microsoft JhengHei, sans-serif" text-anchor="middle">
+<text x="400" y="65" font-size="34" font-weight="700" fill="#0f172a">四小時，夠跑哪些實驗？</text>
+<text x="400" y="104" font-size="22" fill="#475569">先數候選，再估每組工作量</text>
+<rect x="48" y="140" width="704" height="162" rx="20" fill="#fff" stroke="#cbd5e1"/>
+<text x="400" y="183" font-size="24" fill="#334155">3 種樹深 × 4 種學習率 × 2 種迭代設定</text>
+<text x="400" y="245" font-size="44" font-weight="700" fill="#0369a1">24 組候選</text>
+<text x="400" y="282" font-size="20" fill="#475569">每組都是一份不同的「食譜」</text>
+<path d="M400 312v34m-12-12 12 12 12-12" stroke="#64748b" stroke-width="4" fill="none"/>
+<rect x="48" y="362" width="704" height="145" rx="20" fill="#e0f2fe"/>
+<text x="400" y="405" font-size="26" fill="#075985">24 組 × 5 折驗證</text>
+<text x="400" y="465" font-size="44" font-weight="700" fill="#075985">120 次擬合</text>
+<path d="M400 518v34m-12-12 12 12 12-12" stroke="#64748b" stroke-width="4" fill="none"/>
+<rect x="48" y="568" width="704" height="145" rx="20" fill="#ccfbf1"/>
+<text x="400" y="611" font-size="26" fill="#115e59">120 次 × 每次 2 分鐘</text>
+<text x="400" y="671" font-size="44" font-weight="700" fill="#115e59">240 分鐘＝4 小時</text>
+<rect x="48" y="746" width="704" height="130" rx="20" fill="#fff7ed" stroke="#fdba74"/>
+<text x="400" y="788" font-size="26" font-weight="700" fill="#9a3412">期限四小時？這樣排太滿！</text>
+<text x="400" y="829" font-size="23" fill="#9a3412">前處理、排隊、重跑與最後重訓還要時間</text>
+<text x="400" y="918" font-size="20" fill="#475569">原創示意｜等速串行估算，非硬體效能承諾</text>
+</g></svg>
