@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="940" viewBox="0 0 800 940" role="img" aria-labelledby="title desc">
+<title id="title">警示的兩個分母</title><desc id="desc">20筆異常有18筆警示；980筆正常有49筆誤報。全部67筆警示，只有18筆真的異常。</desc>
+<rect width="800" height="940" rx="24" fill="#f1f5f9"/>
+<g font-family="Microsoft JhengHei, sans-serif" text-anchor="middle">
+<text x="400" y="60" font-size="34" font-weight="700" fill="#0f172a">收到警示，就代表異常嗎？</text>
+<text x="400" y="101" font-size="22" fill="#475569">先數件數，再找正確的分母</text>
+<rect x="180" y="135" width="440" height="82" rx="18" fill="#0f172a"/>
+<text x="400" y="187" font-size="32" fill="#fff">1,000 筆交易</text>
+<path d="M400 217v30H210v28m190-28h190v28" stroke="#64748b" stroke-width="4" fill="none"/>
+<rect x="40" y="280" width="340" height="100" rx="18" fill="#e0f2fe"/>
+<text x="210" y="322" font-size="26" fill="#075985">實際異常</text>
+<text x="210" y="362" font-size="32" font-weight="700" fill="#075985">20 筆</text>
+<rect x="420" y="280" width="340" height="100" rx="18" fill="#ffedd5"/>
+<text x="590" y="322" font-size="26" fill="#9a3412">實際正常</text>
+<text x="590" y="362" font-size="32" font-weight="700" fill="#9a3412">980 筆</text>
+<path d="M210 382v38m380-38v38" stroke="#64748b" stroke-width="4"/>
+<rect x="40" y="426" width="340" height="144" rx="18" fill="#fff" stroke="#7dd3fc"/>
+<text x="210" y="465" font-size="24" fill="#075985">偵測率 90%</text>
+<text x="210" y="507" font-size="32" font-weight="700" fill="#075985">18 筆警示</text>
+<text x="210" y="548" font-size="22" fill="#475569">另有 2 筆漏報</text>
+<rect x="420" y="426" width="340" height="144" rx="18" fill="#fff" stroke="#fdba74"/>
+<text x="590" y="465" font-size="24" fill="#9a3412">誤報率 5%</text>
+<text x="590" y="507" font-size="32" font-weight="700" fill="#9a3412">49 筆誤報</text>
+<text x="590" y="548" font-size="22" fill="#475569">另有 931 筆未警示</text>
+<path d="M210 570v30h380v-30m-190 30v35m-12-12 12 12 12-12" stroke="#64748b" stroke-width="4" fill="none"/>
+<rect x="80" y="650" width="640" height="135" rx="18" fill="#ccfbf1"/>
+<text x="400" y="693" font-size="27" fill="#115e59">警示箱：18 ＋ 49 ＝ 67 筆</text>
+<text x="400" y="747" font-size="34" font-weight="700" fill="#115e59">真異常比例 18 ÷ 67 ≈ 26.87%</text>
+<text x="400" y="835" font-size="25" font-weight="700" fill="#0f172a">90% 看所有異常；26.87% 看所有警示</text>
+<text x="400" y="887" font-size="20" fill="#475569">原創合成案例｜方框大小不代表件數比例</text>
+</g></svg>
