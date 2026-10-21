@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="920" viewBox="0 0 800 920" role="img" aria-labelledby="title desc">
+<title id="title">相同梯度規則，三種步伐</title><desc id="desc">從w=0開始，學習率0.1逐步靠近3，0.5一步到3，1.1跨過最低點並發散。</desc>
+<rect width="800" height="920" rx="24" fill="#f1f5f9"/>
+<g font-family="Microsoft JhengHei, sans-serif" text-anchor="middle">
+<text x="400" y="60" font-size="34" font-weight="700" fill="#0f172a">同一座山，三種步伐</text>
+<text x="400" y="108" font-size="27" fill="#334155">L(w)＝(w−3)² ｜ 起點 w＝0</text>
+<text x="400" y="150" font-size="23" fill="#475569">每一步：w新＝w舊 − η × 2(w舊−3)</text>
+<rect x="48" y="185" width="704" height="170" rx="20" fill="#e0f2fe"/>
+<text x="400" y="227" font-size="27" font-weight="700" fill="#075985">η＝0.1：逐步靠近</text>
+<text x="400" y="278" font-size="32" fill="#075985">w：0 → 0.6 → 1.08</text>
+<text x="400" y="324" font-size="25" fill="#334155">損失：9 → 5.76 → 3.6864</text>
+<rect x="48" y="380" width="704" height="170" rx="20" fill="#ccfbf1"/>
+<text x="400" y="422" font-size="27" font-weight="700" fill="#115e59">η＝0.5：本例一步到最低點</text>
+<text x="400" y="473" font-size="32" fill="#115e59">w：0 → 3 → 3</text>
+<text x="400" y="519" font-size="25" fill="#334155">損失：9 → 0 → 0</text>
+<rect x="48" y="575" width="704" height="170" rx="20" fill="#ffedd5"/>
+<text x="400" y="617" font-size="27" font-weight="700" fill="#9a3412">η＝1.1：跨過頭，越走越遠</text>
+<text x="400" y="668" font-size="32" fill="#9a3412">w：0 → 6.6 → −1.32</text>
+<text x="400" y="714" font-size="25" fill="#334155">損失：9 → 12.96 → 18.6624</text>
+<text x="400" y="801" font-size="25" font-weight="700" fill="#0f172a">方向正確，也不保證大步走會下降</text>
+<text x="400" y="849" font-size="21" fill="#475569">原創手算示意｜0.5不是所有模型的最佳學習率</text>
+<text x="400" y="883" font-size="21" fill="#475569">訓練損失下降後，仍要檢查新資料表現</text>
+</g></svg>
