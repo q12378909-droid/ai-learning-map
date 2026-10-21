@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="700" viewBox="0 0 960 700" role="img" aria-labelledby="title desc">
+<title id="title">同一家商店，三種學習訊號</title><desc id="desc">預測退貨使用標籤；探索客群尋找結構；補貨決策考慮行動後的報酬。訓練學參數，驗證選設定，測試在方案固定後驗收。</desc>
+<rect width="960" height="700" rx="24" fill="#f3f7f5"/>
+<g font-family="system-ui, sans-serif" fill="#203c3d">
+<text x="40" y="48" font-size="14" fill="#537b70">L23201 · 用訊號理解機器學習</text>
+<text x="40" y="91" font-size="30" font-weight="700">先問：答案從哪裡來？</text>
+<text x="40" y="124" font-size="17" fill="#637777">同樣是商店資料，目標不同，學習與驗收方式也不同。</text>
+<rect x="35" y="155" width="285" height="300" rx="16" fill="white" stroke="#c9dcd4"/>
+<rect x="338" y="155" width="285" height="300" rx="16" fill="white" stroke="#ccd7e3"/>
+<rect x="641" y="155" width="285" height="300" rx="16" fill="white" stroke="#ddd3e5"/>
+<g font-size="15" font-weight="600"><text x="55" y="190" fill="#278277">01 / 有目標標籤</text><text x="358" y="190" fill="#577ba4">02 / 探索資料結構</text><text x="661" y="190" fill="#8a679d">03 / 行動後有回饋</text></g>
+<g font-size="24" font-weight="700"><text x="55" y="231">監督學習</text><text x="358" y="231">非監督學習</text><text x="661" y="231">強化學習</text></g>
+<g font-size="18"><text x="55" y="273">訂單 → 是否退貨</text><text x="358" y="273">購買紀錄 → 相似群組</text><text x="661" y="273">庫存 → 補貨 → 新庫存</text></g>
+<g font-size="16" fill="#637777"><text x="55" y="316">歷史結果當參考答案</text><text x="55" y="345">學會對新訂單做預測</text><text x="358" y="316">沒有指定的客群答案</text><text x="358" y="345">分出的群要再解讀</text><text x="661" y="316">行動改變後續處境</text><text x="661" y="345">考慮長期累積報酬</text></g>
+<g font-size="15" fill="#345c51"><text x="55" y="403">驗收：未見資料與錯誤成本</text><text x="358" y="403">驗收：結構、穩定與用途</text><text x="661" y="403">驗收：回報、風險與限制</text></g>
+<text x="40" y="498" font-size="20" font-weight="700">以監督預測為例：三份資料，各有工作</text>
+<rect x="40" y="522" width="270" height="94" rx="12" fill="#e0eee7"/><rect x="345" y="522" width="270" height="94" rx="12" fill="#e6edf5"/><rect x="650" y="522" width="270" height="94" rx="12" fill="#eee8f3"/>
+<g font-size="20" text-anchor="middle"><text x="175" y="555">訓練：練習題</text><text x="480" y="555">驗證：模擬考</text><text x="785" y="555">測試：封存考卷</text></g>
+<g font-size="16" text-anchor="middle"><text x="175" y="587">學模型與前處理參數</text><text x="480" y="587">選設定、比較方案</text><text x="785" y="587">方案固定後獨立驗收</text></g>
+<text x="40" y="658" font-size="16" fill="#637777">原創教學示意 · 學習訊號可以組合；分數漂亮仍要檢查洩漏與泛化。</text>
+</g></svg>
