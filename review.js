@@ -37,7 +37,7 @@ window.organizeReader=function(u){
  // Chapter navigation already exists below the lesson; avoid a second list here.
  nav.querySelectorAll('button,hr').forEach(n=>n.remove());
  [...nav.querySelectorAll('strong')].slice(1).forEach(n=>n.remove());
- const toc=document.createElement('details');toc.className='reader-toc';toc.open=matchMedia('(min-width: 801px)').matches;toc.innerHTML='<summary>本節目錄</summary>';nav.replaceWith(toc);toc.append(nav);nav.querySelector('strong')?.remove();
+ const toc=document.createElement('details');toc.className='reader-toc';toc.open=false;toc.innerHTML='<summary>本節目錄<span class="toc-hint" aria-hidden="true"></span></summary>';nav.replaceWith(toc);toc.append(nav);nav.querySelector('strong')?.remove();
  const cards=root.querySelector('#read-drive-cards');
  if(cards){const list=cards.querySelector('.drive-list');if(list){const fold=document.createElement('details');fold.id=cards.id;fold.className='drive-card-block';fold.innerHTML='<summary>補充圖卡 · '+list.querySelectorAll('li').length+' 張 Google Drive 原圖</summary>';cards.removeAttribute('id');cards.replaceWith(fold);fold.append(cards);const items=document.createElement('div');items.className='drive-list';items.append(list.querySelector('ol'));list.replaceWith(items);}else{cards.remove();nav.querySelector('[href="#read-drive-cards"]')?.remove();}}
  const sources=root.querySelector('#read-sources');const fold=document.createElement('details');fold.id=sources.id;fold.className='reading-block unit-sources';fold.innerHTML='<summary>查核與延伸來源</summary>';sources.removeAttribute('id');sources.querySelector('h3')?.remove();sources.replaceWith(fold);fold.append(sources);

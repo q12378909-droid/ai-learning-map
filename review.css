@@ -5,3 +5,16 @@
 
 #map .section-head{margin-top:0}.hero{margin-top:0}.hero h1 span:after{display:none}.account-strip{background:#fff!important}.hero{padding-top:32px;padding-bottom:20px}#map{padding-top:10px}
 @media(max-width:800px){#map .section-head{align-items:flex-start;flex-direction:column;gap:12px}.progress-box{width:100%;max-width:300px}header nav a{display:inline!important}header nav{width:100%;justify-content:space-between}.hero h1 span{border:0;background:none}.toolbar .tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.unit-link{min-height:62px}}
+
+/* Reading first: collapsed contents never reserve a sidebar column. */
+dialog#lesson .reader-layout{display:block}
+dialog#lesson .reader-toc{position:static;max-height:none;margin:0 0 24px;overflow:visible;background:#f7faf8}
+dialog#lesson .reader-toc>summary{padding:12px 16px;font-size:15px;font-weight:600}
+.toc-hint{float:right;color:#637777;font-size:13px;font-weight:400}
+.toc-hint::after{content:"展開目錄 ＋"}
+.reader-toc[open] .toc-hint::after{content:"收合目錄 −"}
+dialog#lesson .reader-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 24px;max-height:300px;overflow:auto;padding:4px 16px 16px}
+dialog#lesson .reader-nav a{font-size:14px}
+dialog#lesson .reader-body .reading-block p,dialog#lesson .reader-body .worked-example p{font-size:17px;line-height:2}
+dialog#lesson .reader-body .feynman-prompt p{font-size:16px}
+@media(max-width:800px){dialog#lesson .reader-nav{grid-template-columns:1fr;max-height:45vh}dialog#lesson .reader-body .reading-block p,dialog#lesson .reader-body .worked-example p{font-size:16px}.toc-hint{font-size:12px}}
