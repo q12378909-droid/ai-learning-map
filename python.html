@@ -1,0 +1,103 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python 實作｜AI ATLAS 費曼學習</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f5f6ef;color:#214536;font:16px/1.9 system-ui,"Microsoft JhengHei",sans-serif}main{max-width:950px;margin:auto;padding:24px}a{color:#21694c;text-underline-offset:4px}h1{font-size:clamp(30px,5vw,46px);line-height:1.35}h2{font-size:25px;line-height:1.5}h3{font-size:18px}p{color:#4d6357}.tag{font-size:13px;letter-spacing:1px}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:24px 0}.flow div{background:#dfe9db;border-radius:14px;padding:18px}.flow b,.flow span{display:block}.flow span{font-size:14px}article,.panel{background:white;border:1px solid #d4dfd0;border-radius:18px;padding:26px;margin:22px 0;scroll-margin-top:20px}pre{background:#163a2c;color:#eef5ec;border-radius:10px;padding:18px;overflow-x:auto;font-size:14px;line-height:1.7;white-space:pre}code{font-family:Consolas,monospace}details{background:#eef3e8;padding:15px;border-radius:10px;margin-top:18px}summary{cursor:pointer;font-weight:600}li{margin:7px 0}.output{white-space:pre-wrap;overflow-wrap:anywhere;border-left:3px solid #91ab79;padding:12px;background:#f7f8f2}.links{display:flex;gap:14px;flex-wrap:wrap}.links a{padding:8px 14px;border:1px solid #b7cbb1;border-radius:8px}nav ol{columns:2;padding-left:24px}footer{font-size:13px;padding:24px 0}.note{font-size:14px}@media(max-width:600px){main{padding:16px}article,.panel{padding:18px}.flow{grid-template-columns:1fr 1fr}nav ol{columns:1}pre{font-size:13px}}
+</style></head><body><main><a href="index.html#map">← 回到學習地圖</a><header><p class="tag">延伸實作 · PYTHON 3 · 費曼學習法</p><h1>把程式讀成步驟，<br>把理解寫成能跑的答案。</h1><p>從零開始，用訂單與客服資料學會Python。每節先猜輸出，再跑程式、改一個條件，最後用自己的話教一次。</p><p class="note">這是跨科延伸教學，不新增官方考綱代碼。可連接L23201、L23301、L23303與L23402；原34單元與帳號進度維持原設計。本頁不計入完成率，也不在網頁內執行Python。</p><div class="flow" role="img" aria-label="先白話說明，再猜輸出，動手修改，最後教回去"><div><b>① 白話說</b><span>輸入 → 處理 → 輸出</span></div><div><b>② 猜答案</b><span>逐行追蹤值</span></div><div><b>③ 動手改</b><span>改一個條件驗證</span></div><div><b>④ 教回去</b><span>說明原因與邊界</span></div></div></header>
+<section class="panel"><h2>先讓第一支程式跑起來</h2><p>可在自己的Python 3環境執行。把程式存成.py檔，從檔案所在資料夾開啟終端機。Windows也可用py取代python。基礎版只需Python標準函式庫；資料與模型版需另裝套件。</p><pre><code>python --version
+python python-basics.py
+
+# 建議在獨立虛擬環境安裝資料與模型套件
+python -m venv .venv
+# Windows PowerShell可直接呼叫，無須改執行原則
+.venv\Scripts\python.exe -m pip install pandas scikit-learn
+.venv\Scripts\python.exe python-ml.py
+# macOS / Linux對應為 .venv/bin/python</code></pre><div class="links"><a href="python-basics.py" download>下載基礎練習 .py</a><a href="python-ml.py" download>下載資料與模型範例 .py</a></div><p class="note">下載檔使用示範資料，不讀取個人檔案。Notebook的儲存格有執行順序；遇到變數殘留，重新啟動後從頭執行，不要只看畫面排列。</p></section><nav class="panel" aria-label="Python課程目錄"><h2>學習路線 · 16節</h2><ol><li><a href="#py-1">程式是食譜：先寫清楚輸入與輸出</a></li><li><a href="#py-2">變數與型別：標籤貼在值上</a></li><li><a href="#py-3">字串與清理：先整理標籤再比較</a></li><li><a href="#py-4">清單與字典：一列貨物與一張訂單</a></li><li><a href="#py-5">if：把判斷寫成清楚的分岔</a></li><li><a href="#py-6">for：逐筆做事，再累積結果</a></li><li><a href="#py-7">函式：把規則裝成可重用的小工具</a></li><li><a href="#py-8">共享物件：兩張標籤不等於兩份資料</a></li><li><a href="#py-9">錯誤訊息：把它當定位線索</a></li><li><a href="#py-10">CSV：讀檔不是用逗號硬切</a></li><li><a href="#py-11">pandas：把資料表當有欄名的工作台</a></li><li><a href="#py-12">篩選與分組：先問業務問題</a></li><li><a href="#py-13">測試：用小例子確認你寫的是原本的規則</a></li><li><a href="#py-14">機器學習：fit是學規則，predict是交答案</a></li><li><a href="#py-15">讀懂評估：分數高，還要知道錯在哪裡</a></li><li><a href="#py-16">費曼總練習：不用術語教完一個小專案</a></li></ol></nav><article id="py-1"><span class="tag">01 / PYTHON</span><h2>程式是食譜：先寫清楚輸入與輸出</h2><p>把Python想成照步驟工作的助手。它不會猜「差不多」是什麼，而是執行你明確寫出的規則。先讀程式、猜輸出，再執行核對。下列是Python 3程式，print把結果顯示出來；#之後是註解，不會執行。</p><h3>先猜輸出，再執行</h3><pre><code>print(&quot;開始整理訂單&quot;)
+print(120 + 80)  # 加總金額</code></pre><details><summary>核對預期結果</summary><div class="output">開始整理訂單
+200</div></details><h3>換你修改與解釋</h3><p>把兩筆金額改成150與90，先口算再跑。</p><details><summary>教回去：參考解析</summary><p>輸出總額240。說清楚輸入是兩筆金額，運算是加法，輸出是總額。</p></details></article><article id="py-2"><span class="tag">02 / PYTHON</span><h2>變數與型別：標籤貼在值上</h2><p>變數比較像指向物件的名稱，不是永久固定型別的盒子。整數int、浮點數float、字串str、布林bool有不同操作。=是指定，==是比較；字串數字不會自動變金額。浮點數不適合不加考慮地當精確金額，實務可用整數最小貨幣單位或Decimal。</p><h3>先猜輸出，再執行</h3><pre><code>price = 120
+quantity = int(&quot;3&quot;)
+total = price * quantity
+print(total, total &gt;= 300)
+print(&quot;3&quot; * 2)</code></pre><details><summary>核對預期結果</summary><div class="output">360 True
+33</div></details><h3>換你修改與解釋</h3><p>為何&quot;3&quot; * 2不是6？</p><details><summary>教回去：參考解析</summary><p>字串乘整數是重複；int(&quot;3&quot;) * 2才是整數6。先說型別，再談運算。</p></details></article><article id="py-3"><span class="tag">03 / PYTHON</span><h2>字串與清理：先整理標籤再比較</h2><p>使用者常多打一個空白或混用大小寫。strip去掉頭尾空白，lower轉小寫；不是把中間所有空白都刪除。f-string把變數放入文字，能讓輸出清楚。</p><h3>先猜輸出，再執行</h3><pre><code>status = &quot; Paid &quot;.strip().lower()
+print(status == &quot;paid&quot;)
+print(f&quot;付款狀態：{status}&quot;)</code></pre><details><summary>核對預期結果</summary><div class="output">True
+付款狀態：paid</div></details><h3>換你修改與解釋</h3><p>若內容是&quot;Not Paid&quot;，清理後會變paid嗎？</p><details><summary>教回去：參考解析</summary><p>不會，會變not paid。字串清理不等於理解業務狀態，應明確定義可接受值。</p></details></article><article id="py-4"><span class="tag">04 / PYTHON</span><h2>清單與字典：一列貨物與一張訂單</h2><p>list保留順序，索引從0開始；dict用鍵找值。清單切片右邊界不包含。找不存在的索引會IndexError，找不存在的字典鍵會KeyError；get可提供預設值，但不要用預設值掩蓋必填欄位缺失。</p><h3>先猜輸出，再執行</h3><pre><code>prices = [100, 200, 300]
+order = {&quot;id&quot;: &quot;A01&quot;, &quot;amount&quot;: 200}
+print(prices[0], prices[1:3])
+print(order[&quot;amount&quot;], order.get(&quot;coupon&quot;, &quot;無&quot;))</code></pre><details><summary>核對預期結果</summary><div class="output">100 [200, 300]
+200 無</div></details><h3>換你修改與解釋</h3><p>把prices[0]改成prices[3]會怎樣？</p><details><summary>教回去：參考解析</summary><p>會IndexError。三筆資料的有效索引是0、1、2；最後一筆也可用prices[-1]。</p></details></article><article id="py-5"><span class="tag">05 / PYTHON</span><h2>if：把判斷寫成清楚的分岔</h2><p>if、elif、else像分類櫃檯。縮排表示哪些指令屬於同一區塊，建議每層4個空白。先想邊界：滿300免運，300本身應該進哪邊？</p><h3>先猜輸出，再執行</h3><pre><code>amount = 300
+if amount &gt;= 300:
+    shipping = 0
+else:
+    shipping = 60
+print(shipping)</code></pre><details><summary>核對預期結果</summary><div class="output">0</div></details><h3>換你修改與解釋</h3><p>分別用299、300、301測試。</p><details><summary>教回去：參考解析</summary><p>運費應為60、0、0。把&gt;=寫成&gt;會讓剛好300的訂單被錯收運費。</p></details></article><article id="py-6"><span class="tag">06 / PYTHON</span><h2>for：逐筆做事，再累積結果</h2><p>for像依序拿起每張訂單。累計器要在迴圈外先設好；若每次都重設0，就只留下最後一筆。range(3)產生0、1、2。先把三圈的total寫在紙上。</p><h3>先猜輸出，再執行</h3><pre><code>amounts = [100, 250, 80]
+total = 0
+for amount in amounts:
+    total += amount
+print(total)
+print([x for x in amounts if x &gt;= 100])</code></pre><details><summary>核對預期結果</summary><div class="output">430
+[100, 250]</div></details><h3>換你修改與解釋</h3><p>把total = 0移到for裡會發生什麼？</p><details><summary>教回去：參考解析</summary><p>每圈都歸零，最後只剩80。清單推導式則是在建立符合條件的新清單。</p></details></article><article id="py-7"><span class="tag">07 / PYTHON</span><h2>函式：把規則裝成可重用的小工具</h2><p>def定義函式，參數是輸入，return交回結果；print只是顯示。沒有return的函式會回傳None。先讓函式只處理一件事，再用不同輸入檢查。型別註記提供說明，不會自動替你完成所有輸入驗證。</p><h3>先猜輸出，再執行</h3><pre><code>def shipping(amount):
+    if amount &lt; 0:
+        raise ValueError(&quot;金額不可為負&quot;)
+    return 0 if amount &gt;= 300 else 60
+
+print(shipping(299), shipping(300))</code></pre><details><summary>核對預期結果</summary><div class="output">60 0</div></details><h3>換你修改與解釋</h3><p>若只print運費、不return，拿函式結果相加會如何？</p><details><summary>教回去：參考解析</summary><p>得到None而不是數字，可能觸發TypeError。運算需要回傳值，顯示結果才用print。</p></details></article><article id="py-8"><span class="tag">08 / PYTHON</span><h2>共享物件：兩張標籤不等於兩份資料</h2><p>b = a不會複製清單，兩個名稱指向同一物件。copy建立淺複本，對只有數字的清單夠用；若裡面還有巢狀清單或字典，內層仍可能共用。</p><h3>先猜輸出，再執行</h3><pre><code>a = [100, 200]
+b = a
+b.append(300)
+c = a.copy()
+c.append(400)
+print(a)
+print(c)</code></pre><details><summary>核對預期結果</summary><div class="output">[100, 200, 300]
+[100, 200, 300, 400]</div></details><h3>換你修改與解釋</h3><p>為何改b也改到a，改c卻沒有？</p><details><summary>教回去：參考解析</summary><p>a與b是同一清單；c是新的外層清單。別把指派誤認成完整複製。</p></details></article><article id="py-9"><span class="tag">09 / PYTHON</span><h2>錯誤訊息：把它當定位線索</h2><p>從traceback最後一行讀錯誤種類，再找自己的程式行號。SyntaxError常是語法，NameError是名稱不存在，TypeError是型別操作不合，ValueError常是值不符合要求。只攔能處理的錯誤，不要用空白except吞掉全部問題。</p><h3>先猜輸出，再執行</h3><pre><code>raw = &quot;abc&quot;
+try:
+    amount = int(raw)
+except ValueError:
+    print(&quot;請輸入整數金額&quot;)</code></pre><details><summary>核對預期結果</summary><div class="output">請輸入整數金額</div></details><h3>換你修改與解釋</h3><p>把錯誤金額一律改成0，有什麼風險？</p><details><summary>教回去：參考解析</summary><p>可能把無效資料偽裝成真實零元訂單。應記錄、拒絕或依明確規則處理。</p></details></article><article id="py-10"><span class="tag">10 / PYTHON</span><h2>CSV：讀檔不是用逗號硬切</h2><p>csv模組會處理引號等格式，比自己split(&quot;,&quot;)可靠。這裡用StringIO模擬檔案，不需下載資料。實際檔案可用with open(&quot;orders.csv&quot;, newline=&quot;&quot;, encoding=&quot;utf-8-sig&quot;) as f，再交給DictReader；with會管理關閉。相對路徑以工作目錄為基準。</p><h3>先猜輸出，再執行</h3><pre><code>import csv
+from io import StringIO
+
+text = &quot;id,amount\nA01,120\nA02,80\n&quot;
+orders = list(csv.DictReader(StringIO(text)))
+print(sum(int(row[&quot;amount&quot;]) for row in orders))</code></pre><details><summary>核對預期結果</summary><div class="output">200</div></details><h3>換你修改與解釋</h3><p>為什麼讀進來的amount還要轉int？</p><details><summary>教回去：參考解析</summary><p>CSV欄位通常是文字。必須先定義型別與無效值規則，再計算金額。</p></details></article><article id="py-11"><span class="tag">11 / PYTHON</span><h2>pandas：把資料表當有欄名的工作台</h2><p>此節需要pandas。DataFrame是有列與欄的表格，先看shape、dtypes、head及缺失值，再做統計。下例明確把金額轉數字，無法轉換者變缺失，保留原欄並排除無效金額後計算。這是示範規則，不能把所有缺失一律丟掉。</p><h3>先猜輸出，再執行</h3><pre><code>import pandas as pd
+
+df = pd.DataFrame({&quot;region&quot;: [&quot;北&quot;, &quot;南&quot;, &quot;北&quot;],
+                   &quot;amount&quot;: [&quot;100&quot;, &quot;200&quot;, &quot;錯誤&quot;]})
+df[&quot;amount_num&quot;] = pd.to_numeric(df[&quot;amount&quot;], errors=&quot;coerce&quot;)
+valid = df.dropna(subset=[&quot;amount_num&quot;])
+print(int(df[&quot;amount_num&quot;].isna().sum()))
+print(int(valid[&quot;amount_num&quot;].sum()))</code></pre><details><summary>核對預期結果</summary><div class="output">1
+300</div></details><h3>換你修改與解釋</h3><p>如果錯誤金額集中在某地區，直接刪除會怎樣？</p><details><summary>教回去：參考解析</summary><p>可能造成代表性偏差。應保留無效筆數、追查來源並評估統計與模型影響。</p></details></article><article id="py-12"><span class="tag">12 / PYTHON</span><h2>篩選與分組：先問業務問題</h2><p>pandas的布林條件選出資料；多條件使用&amp;或|並各自加括號，不使用Python單值的and/or。groupby像按區域把單據分成幾疊再加總。筆數相同不代表金額相同，平均也可能掩蓋分布。</p><h3>先猜輸出，再執行</h3><pre><code>import pandas as pd
+
+df = pd.DataFrame({&quot;region&quot;: [&quot;北&quot;, &quot;南&quot;, &quot;北&quot;],
+                   &quot;amount&quot;: [100, 200, 300]})
+selected = df.loc[(df[&quot;amount&quot;] &gt;= 200) &amp; (df[&quot;region&quot;] == &quot;北&quot;)]
+print(selected[&quot;amount&quot;].tolist())
+print(df.groupby(&quot;region&quot;)[&quot;amount&quot;].sum().to_dict())</code></pre><details><summary>核對預期結果</summary><div class="output">[300]
+北區加總400、南區加總200（字典顯示順序不影響結果）</div></details><h3>換你修改與解釋</h3><p>把&amp;改成and為什麼可能出錯？</p><details><summary>教回去：參考解析</summary><p>Series包含多個真假值，不能直接當成一個布林值；&amp;在這裡逐列合併條件。</p></details></article><article id="py-13"><span class="tag">13 / PYTHON</span><h2>測試：用小例子確認你寫的是原本的規則</h2><p>assert可讓開發時的錯誤假設立即顯現。測一般值、邊界和無效值，而不是只測漂亮例子。assert不應取代正式輸入驗證，因為最佳化執行可停用assert。</p><h3>先猜輸出，再執行</h3><pre><code>def shipping(amount):
+    if amount &lt; 0:
+        raise ValueError(&quot;金額不可為負&quot;)
+    return 0 if amount &gt;= 300 else 60
+
+assert shipping(299) == 60
+assert shipping(300) == 0
+try:
+    shipping(-1)
+except ValueError:
+    print(&quot;邊界與無效值測試通過&quot;)</code></pre><details><summary>核對預期結果</summary><div class="output">邊界與無效值測試通過</div></details><h3>換你修改與解釋</h3><p>如果只測100和500，會漏掉哪種錯誤？</p><details><summary>教回去：參考解析</summary><p>可能漏掉300這個邊界用&gt;或&gt;=的差別。測試應來自規則與風險，而非照抄實作。</p></details></article><article id="py-14"><span class="tag">14 / PYTHON</span><h2>機器學習：fit是學規則，predict是交答案</h2><p>頁首下載的完整程式用合成分類資料示範Pipeline：先切分訓練與測試，只用訓練集學補值、縮放與分類器，再在測試集預測。這對應L23301與L23303。它是流程練習，不是可直接上線的客服模型；真實時間序列或同人多筆資料需要相應切分。</p><h3>先猜輸出，再執行</h3><pre><code>from sklearn.pipeline import make_pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+
+model = make_pipeline(
+    SimpleImputer(strategy=&quot;median&quot;),
+    StandardScaler(),
+    LogisticRegression(max_iter=1000)
+)
+# X_train等資料由頁首完整下載程式建立
+# model.fit(X_train, y_train)
+# predictions = model.predict(X_test)</code></pre><details><summary>核對預期結果</summary><div class="output">本片段只建立模型，沒有輸出；請執行完整python-ml.py查看結果。</div></details><h3>換你修改與解釋</h3><p>為何不能先用全資料算平均和縮放，再切測試集？</p><details><summary>教回去：參考解析</summary><p>測試資料資訊會進入學習流程，造成洩漏。Pipeline配合正確切分，讓前處理跟著訓練資料學習。</p></details></article><article id="py-15"><span class="tag">15 / PYTHON</span><h2>讀懂評估：分數高，還要知道錯在哪裡</h2><p>混淆矩陣不是神祕圖：TP是正例猜對，FN是正例漏掉，FP是負例誤報，TN是負例猜對。下面手算Recall，不需要外部套件。總分之外也要看分組、樣本量和錯誤成本，連回L23402。</p><h3>先猜輸出，再執行</h3><pre><code>tp, fn, fp, tn = 40, 10, 10, 40
+recall = tp / (tp + fn) if tp + fn else None
+accuracy = (tp + tn) / (tp + fn + fp + tn)
+print(recall, accuracy)</code></pre><details><summary>核對預期結果</summary><div class="output">0.8 0.8</div></details><h3>換你修改與解釋</h3><p>若沒有任何真正正例，Recall應填0還是100%？</p><details><summary>教回去：參考解析</summary><p>分母為0，沒有可評估的正例，應標示未定義與原因；不要假裝是完美或完全失敗。</p></details></article><article id="py-16"><span class="tag">16 / PYTHON</span><h2>費曼總練習：不用術語教完一個小專案</h2><p>把工作分成輸入、檢查、處理、輸出、驗證五步。用訂單例子說清：金額從哪來、文字怎麼轉數字、錯誤如何處理、滿額運費怎麼算、怎麼證明沒算錯。再換成客服案件試一次；說不清楚的步驟，就是需要回讀的地方。</p><h3>先猜輸出，再執行</h3><pre><code>orders = [{&quot;id&quot;: &quot;A01&quot;, &quot;amount&quot;: 120},
+          {&quot;id&quot;: &quot;A02&quot;, &quot;amount&quot;: 350}]
+for order in orders:
+    fee = 0 if order[&quot;amount&quot;] &gt;= 300 else 60
+    print(order[&quot;id&quot;], order[&quot;amount&quot;] + fee)</code></pre><details><summary>核對預期結果</summary><div class="output">A01 180
+A02 350</div></details><h3>換你修改與解釋</h3><p>加入一筆金額為-20的訂單，你要把檢查放在哪裡？</p><details><summary>教回去：參考解析</summary><p>在套用運費與輸出之前先驗證金額，拒絕無效值或交由明確流程處理；不要讓負值悄悄進入報表。</p></details></article><section class="panel"><h2>回到一手文件</h2><ul><li><a href="https://docs.python.org/3/tutorial/">Python 官方教學</a>：語法、資料結構、函式與例外。</li><li><a href="https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html">pandas 官方入門</a>：表格選取、清理與彙總。</li><li><a href="https://scikit-learn.org/stable/common_pitfalls.html">scikit-learn：常見錯誤</a>：避免資料洩漏與前處理不一致。</li></ul><p class="note">教學案例與練習為原創；查核日期2026-10-23。套件版本可能影響輸出顯示與模型分數，下載的模型程式會列出實際版本。</p></section><footer>雲橫介工程師 製作 · AI ATLAS · 非iPAS官方網站<br><a href="index.html#map">回學習地圖</a></footer></main></body></html>

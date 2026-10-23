@@ -7,6 +7,7 @@
  remove('.orientation,.upgrade-note,.field-note,.errata,.external-resources,.source-note');
  one('#map .section-head .eyebrow').textContent='YOUR STUDY MAP';
  one('#map h2').textContent='今天，複習哪一科？';
+ const pythonEntry=document.createElement('p');pythonEntry.className='map-intro';pythonEntry.innerHTML='<a href="python.html"><strong>Python 實作教學 →</strong></a>　16 節費曼教學 · 程式範例與下載 · 延伸學習';one('#map .section-head').after(pythonEntry);
  const tabs=one('.toolbar .tabs');
  tabs.innerHTML='<button data-route="all" aria-pressed="true">全部科目</button><button data-route="21" aria-pressed="false">科目一 · AI 規劃</button><button data-route="22" aria-pressed="false">科目二 · 數據分析</button><button data-route="23" aria-pressed="false">科目三 · 機器學習</button>';
  tabs.querySelectorAll('button').forEach(b=>b.onclick=()=>{route=b.dataset.route;tabs.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));render();});
